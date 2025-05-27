@@ -2,8 +2,8 @@
 
 CREDENTIAL = {
     user:{
-        email: 'alexandre.furtado.20430@aluno.facape.br',
-        password: '88161658'
+        email: '',
+        password: ''
     },
     user_2:{
         email: 'email_dois@email.com',
