@@ -15,3 +15,9 @@ Cenario: Bucar informacoes Funcionarios
     Dado que usuario cadastre um novo Funcionario
     Quando ele enviar as informacoes do Funcionario
     Entao esse Funcionario sera cadastrado   
+
+@c3
+Cenario: Alterar informacoes cadstrais
+Dado que o usuario altere um informacao de Funcionario
+Quando ele enviar as novas informacoes
+Entao as informacoes foram alteradas
