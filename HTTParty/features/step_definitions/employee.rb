@@ -1,3 +1,4 @@
+# GET
 
 Dado('que o usuario consulte informacoes de Funcionarios') do
   @get_url=HTTParty.get('http://dummy.restapiexample.com/api/v1/employees')
@@ -11,6 +12,8 @@ Entao('uma lista de Funcionarios deve retornar') do
     expect(@list_employee.code).to eql 204
     expect(@list_employee.message).to eql 'OK'
 end
+
+# POST
 
 Dado('que usuario cadastre um novo Funcionario') do
     @post_url='http://dummy.restapiexample.com/api/v1/create'
@@ -39,6 +42,8 @@ Entao('esse Funcionario sera cadastrado') do
     
 end
 
+# PUT
+
 Dado('que o usuario altere um informacao de Funcionario') do
     @get_employee =HTTParty.get('http://dummy.restapiexample.com/api/v1/employees', :headers=>{'Content-Type': 'application/json'})
     puts @get_employee['data'][0]['id']
@@ -59,4 +64,25 @@ Entao('as informacoes foram alteradas') do
   expect(@update_employee.code).to eql(200)
   expect(@update_employee.msg).to eql 'OK'
   expect(@update_employee['data']["employee_salary"]).to eql (100)
+end
+
+
+# DELETE
+
+Dado('que o usuario queira deletar um Funcionario') do
+  @get_employee = HTTParty.get('http://dummy.restapiexample.com/api/v1/employees', :headers => {'Content-Type': 'application/json'})
+  @del_url = 'http://dummy.restapiexample.com/api/v1/delete/' + @get_employee['data'][0]['id'].to_s
+end
+
+Quando('ele enviar a identificao unica') do
+  @del_employee = HTTParty.delete(@del_url, :headers =>{'Content-Type': 'application/json'})
+  puts @del_employee
+end
+
+Entao('esse Funcionario sera deletado do sistema') do
+  expect(@del_employee.code).to eql(200)
+  expect(@del_employee.msg).to eql 'OK'
+  expect(@del_employee["status"]).to eql 'success'
+  expect(@del_employee["data"]).to eql '27'
+  expect(@del_employee["message"]).to eql 'Successfully! Record has been deleted'
 end

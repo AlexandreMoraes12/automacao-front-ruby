@@ -21,3 +21,9 @@ Cenario: Alterar informacoes cadstrais
 Dado que o usuario altere um informacao de Funcionario
 Quando ele enviar as novas informacoes
 Entao as informacoes foram alteradas
+
+@c4
+Cenario: deletar cadastrado de Funcionarios
+Dado que o usuario queira deletar um Funcionario
+Quando ele enviar a identificao unica
+Entao esse Funcionario sera deletado do sistema
